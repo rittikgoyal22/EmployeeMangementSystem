@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/employee-service/v1")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EmployeeController {
 
     @Autowired
