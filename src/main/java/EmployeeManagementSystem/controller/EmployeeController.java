@@ -3,6 +3,7 @@ package EmployeeManagementSystem.controller;
 import EmployeeManagementSystem.dto.EmployeeRequestDto;
 import EmployeeManagementSystem.dto.EmployeeResponseDto;
 import EmployeeManagementSystem.services.interfaces.IEmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +34,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee")
-    public EmployeeResponseDto addEmployee(@RequestBody EmployeeRequestDto employeeRequestDto)
+    public EmployeeResponseDto addEmployee(@Valid @RequestBody EmployeeRequestDto employeeRequestDto)
     {
         logger.info("Inside Employee Controller : addEmployee method");
         return employeeService.addEmployee(employeeRequestDto);

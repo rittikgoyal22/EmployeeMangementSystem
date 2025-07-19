@@ -16,6 +16,7 @@ public class EmployeeMapper {
                 .lastName(employee.getLastName())
                 .email(employee.getEmail())
                 .salary(employee.getSalary())
+                .password(employee.getPassword())
                 .build();
     }
 
@@ -26,6 +27,7 @@ public class EmployeeMapper {
                 .lastName(employeeRequestDto.getLastName())
                 .email(employeeRequestDto.getEmail())
                 .salary(employeeRequestDto.getSalary())
+                .password(employeeRequestDto.getPassword())
                 .build();
     }
 
@@ -35,6 +37,7 @@ public class EmployeeMapper {
         employee.setLastName(employeeRequestDto.getLastName());
         employee.setEmail(employeeRequestDto.getEmail());
         employee.setSalary(employeeRequestDto.getSalary());
+        employee.setPassword(employeeRequestDto.getPassword());
         return employee;
     }
 }
