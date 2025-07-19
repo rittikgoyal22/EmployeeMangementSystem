@@ -5,6 +5,7 @@ import EmployeeManagementSystem.dto.EmployeeResponseDto;
 import EmployeeManagementSystem.services.interfaces.IEmployeeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,38 +21,38 @@ public class EmployeeController {
     private static final Logger logger = Logger.getLogger(EmployeeController.class.getName());
 
     @GetMapping("/employee/{id}")
-    public EmployeeResponseDto getById(@PathVariable("id") Long id)
+    public ResponseEntity<EmployeeResponseDto> getById(@PathVariable("id") Long id)
     {
         logger.info("Inside Employee Controller : getById method");
-        return employeeService.getById(id);
+        return ResponseEntity.ok(employeeService.getById(id));
     }
 
     @GetMapping("/employee")
-    public List<EmployeeResponseDto> getAllEmployee()
+    public ResponseEntity<List<EmployeeResponseDto>> getAllEmployee()
     {
         logger.info("Inside Employee Controller : getAllEmployee method");
-        return employeeService.getAllEmployees();
+        return ResponseEntity.ok(employeeService.getAllEmployees());
     }
 
     @PostMapping("/employee")
-    public EmployeeResponseDto addEmployee(@Valid @RequestBody EmployeeRequestDto employeeRequestDto)
+    public ResponseEntity<EmployeeResponseDto> addEmployee(@Valid @RequestBody EmployeeRequestDto employeeRequestDto)
     {
         logger.info("Inside Employee Controller : addEmployee method");
-        return employeeService.addEmployee(employeeRequestDto);
+        return ResponseEntity.ok(employeeService.addEmployee(employeeRequestDto));
     }
 
     @DeleteMapping("/employee/{id}")
-    public String deleteEmployee(@PathVariable("id") Long id)
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long id)
     {
         logger.info("Inside Employee Controller : deleteEmployee method");
-        return employeeService.deleteEmployee(id);
+        return ResponseEntity.ok(employeeService.deleteEmployee(id));
     }
 
     @PatchMapping("/employee/{id}")
-    public EmployeeResponseDto updateEmployee(@PathVariable("id") Long id, @RequestBody EmployeeRequestDto employeeRequestDto)
+    public ResponseEntity<EmployeeResponseDto> updateEmployee(@PathVariable("id") Long id, @RequestBody EmployeeRequestDto employeeRequestDto)
     {
         logger.info("Inside Employee Controller : updateEmployee method");
-        return employeeService.updateEmployee(id, employeeRequestDto);
+        return ResponseEntity.ok(employeeService.updateEmployee(id, employeeRequestDto));
     }
 
 }
