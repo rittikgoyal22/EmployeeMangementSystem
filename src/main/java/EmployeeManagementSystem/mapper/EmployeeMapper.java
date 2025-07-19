@@ -3,10 +3,13 @@ package EmployeeManagementSystem.mapper;
 import EmployeeManagementSystem.dto.EmployeeRequestDto;
 import EmployeeManagementSystem.dto.EmployeeResponseDto;
 import EmployeeManagementSystem.entity.Employee;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
 public class EmployeeMapper {
+
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     public EmployeeResponseDto entityToResponseDto(Employee employee)
     {
@@ -27,7 +30,7 @@ public class EmployeeMapper {
                 .lastName(employeeRequestDto.getLastName())
                 .email(employeeRequestDto.getEmail())
                 .salary(employeeRequestDto.getSalary())
-                .password(employeeRequestDto.getPassword())
+                .password(encoder.encode(employeeRequestDto.getPassword()))
                 .build();
     }
 
@@ -37,7 +40,7 @@ public class EmployeeMapper {
         employee.setLastName(employeeRequestDto.getLastName());
         employee.setEmail(employeeRequestDto.getEmail());
         employee.setSalary(employeeRequestDto.getSalary());
-        employee.setPassword(employeeRequestDto.getPassword());
+        employee.setPassword(encoder.encode(employeeRequestDto.getPassword()));
         return employee;
     }
 }
