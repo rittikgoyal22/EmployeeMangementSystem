@@ -18,3 +18,4 @@ VALUES
 ('Bob', 'Reo', 'bob@example.com', 20000.00, NULL);
 select * from department;
 select * from employee;
+alter table employee add password varchar(100) not null;
