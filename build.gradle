@@ -25,6 +25,13 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // JJWT API (mandatory)
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    // JJWT Implementation (mandatory)
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+    // JSON Processing Library (choose one, e.g., Jackson or Gson)
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6' // For Jackson integration
 }
 
 test {

@@ -3,11 +3,16 @@ package EmployeeManagementSystem.services.classes;
 import EmployeeManagementSystem.dao.EmployeeRepo;
 import EmployeeManagementSystem.dto.EmployeeRequestDto;
 import EmployeeManagementSystem.dto.EmployeeResponseDto;
+import EmployeeManagementSystem.dto.LoginRequestDto;
 import EmployeeManagementSystem.entity.Employee;
 import EmployeeManagementSystem.mapper.EmployeeMapper;
 import EmployeeManagementSystem.services.interfaces.IEmployeeService;
+import EmployeeManagementSystem.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,6 +27,12 @@ public class EmployeeService implements IEmployeeService {
 
     @Autowired
     private EmployeeMapper employeeMapper;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtUtil jwtUtil;
 
     public EmployeeResponseDto getById(Long id)
     {
@@ -57,5 +68,16 @@ public class EmployeeService implements IEmployeeService {
         employee = employeeMapper.updateEmployee(employee, employeeRequestDto);
         employee = employeeRepo.save(employee);
         return employeeMapper.entityToResponseDto(employee);
+    }
+
+    @Override
+    public String loginEmployee(LoginRequestDto loginRequestDto) {
+
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.getEmail(), loginRequestDto.getPassword()));
+        if (authentication.isAuthenticated()) {
+            return jwtUtil.generateToken(loginRequestDto.getEmail());
+        } else {
+            return "fail to generate token";
+        }
     }
 }

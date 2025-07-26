@@ -31,6 +31,9 @@ public class Employee {
     @Column(name = "salary")
     private BigDecimal salary;
 
+    @Column(name="password")
+    private String password;
+
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
