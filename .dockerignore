@@ -1,0 +1,22 @@
+# Ignore build output (only include final JAR)
+target/
+!target/*.jar
+
+# Gradle/Maven files
+.gradle
+*.iml
+*.log
+
+# Git & IDE
+.git
+.gitignore
+.DS_Store
+*.swp
+.vscode
+.idea
+
+# OS/Editor
+*.class
+*.jar
+*.war
+*.zip
