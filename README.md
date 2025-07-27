@@ -1,21 +1,29 @@
-SQl:
+SQL: 
 
-
-use employee_management_system;
-create table department(id bigint auto_increment primary key, name varchar(100) not null unique);
-create table employee(id bigint primary key auto_increment, first_name varchar(50), last_name varchar(50), email varchar(100) unique not null, salary decimal(10,2), department_id bigint, foreign key (department_id) references department(id));
-show tables;
-desc employee;
-desc department;
--- Departments
-INSERT INTO department (name) VALUES ('IT'), ('HR'), ('Finance');
--- Employees
-INSERT INTO employee (first_name, last_name, email, salary, department_id)
-VALUES 
-('Alice', 'Brown', 'alice@example.com', 70000.00, 1),
-(NULL, 'Smith', 'smith@example.com', 50000.00, 2),
-('Charlie', NULL, 'charlie@example.com', NULL, 1),
-('Bob', 'Reo', 'bob@example.com', 20000.00, NULL);
-select * from department;
-select * from employee;
-alter table employee add password varchar(100) not null;
+    use employee_management_system; 
+    create table department(id bigint auto_increment primary key, name varchar(100) not null unique); 
+    
+    CREATE TABLE employee (
+        id BIGINT PRIMARY KEY AUTO_INCREMENT,
+        first_name VARCHAR(50),
+        last_name VARCHAR(50),
+        email VARCHAR(100) UNIQUE NOT NULL,
+        salary DECIMAL(10,2),
+        department_id BIGINT,
+        password VARCHAR(100) NOT NULL,
+        FOREIGN KEY (department_id) REFERENCES department(id)
+    );
+    
+    show tables; 
+    desc employee; 
+    desc department;
+    INSERT INTO department (name) VALUES ('IT'), ('HR'), ('Finance'); 
+    INSERT INTO employee (first_name, last_name, email, salary, department_id, password) VALUES
+    ('Rittik', 'Goyal', 'rittikgoyal22@gmail.com', 200000.00, 1, 'rittik'),
+    ('Garvit', 'Rangi', 'garvit@gmail.com', 100000.00, 2, 'garvit'),
+    ('Mehul', 'Singh', 'mehul@gmail.com', 100000.00, 1, 'mehul'),
+    ('Rishi', 'Raj', 'rishi@gmail.com', 200000.00, 3, 'rishi'),
+    ('Saurabh', 'Singh', 'saurabh@gmail.com', 235211.00, 2, 'saurabh');
+     select * from department; 
+     select * from employee; 
+   
